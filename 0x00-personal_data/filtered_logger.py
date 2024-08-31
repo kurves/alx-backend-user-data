@@ -77,3 +77,29 @@ def get_db() -> connection.MySQLConnection:
     )
 
     return conn
+
+
+def main() -> None:
+    """
+    Main function to retrieve all rows from the users
+    """
+    db = get_db()
+    cursor = db.cursor()
+
+    cursor.execute("SELECT * FROM users;")
+    rows = cursor.fetchall()
+
+    logger = get_logger()
+
+    columns = [desc[0] for desc in cursor.description]
+
+    for row in rows:
+        row_dict = {columns[i]: row[i] for i in range(len(columns))}
+        log_message = "; ".join(f"{key}={row_dict[key]}" for key in row_dict)
+        logger.info(log_message)
+
+    cursor.close()
+    db.close()
+
+if __name__ == "__main__":
+    main()
