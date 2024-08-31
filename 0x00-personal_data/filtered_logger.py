@@ -6,6 +6,10 @@ Module that provides a function to obfuscate log messages.
 from typing import List
 import re
 import logging
+import os
+import mysql.connector
+from mysql.connector import connection
+
 
 def filter_datum(fields: List[str], redaction: str, message: str, separator: str) -> str:
     """
