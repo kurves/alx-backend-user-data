@@ -42,9 +42,16 @@ class Auth:
             return None
 
         return request.headers.get('Authorization')
-        
+
     def current_user(self, request=None) -> TypeVar('User'):
         """
         current user functiuon
         """
         return None
+
+class BasicAuth(Auth):
+    """
+    Basic auth class inherits auth class
+    """
+    return None
+
