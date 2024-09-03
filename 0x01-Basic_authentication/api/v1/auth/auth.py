@@ -48,10 +48,3 @@ class Auth:
         current user functiuon
         """
         return None
-
-class BasicAuth(Auth):
-    """
-    Basic auth class inherits auth class
-    """
-    return None
-
