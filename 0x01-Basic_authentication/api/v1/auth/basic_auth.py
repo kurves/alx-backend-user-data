@@ -4,8 +4,11 @@
 Basic Auth module
 """
 
+from api.v1.auth.auth import Auth
+
+
 class BasicAuth(Auth):
     """
     Basic auth class inherits auth class
     """
-    return None
+    pass
