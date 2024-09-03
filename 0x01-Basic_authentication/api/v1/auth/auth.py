@@ -30,7 +30,7 @@ class Auth:
             if path == excluded_path:
                 return False
 
-    return True
+        return True
 
 
     def authorization_header(self, request=None) -> str:
