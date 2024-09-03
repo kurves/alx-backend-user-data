@@ -31,8 +31,4 @@ def unauthorized() -> str:
     """
     Get api/vi/unauthorixed
     """
-    resource = get_resource()
-    if resource is None:
-        abort(401, descrption="Unauthorized")
-    return jsonify(resource)
-
+    abort(401, description="Unauthorized")
