@@ -21,7 +21,7 @@ class Auth:
             return True
         if excluded_paths is None or len(excluded_paths) == 0:
             return True
-        #normalize path
+        # normalize path
         if path[-1] != '/':
             path += '/'
         for excluded_path in excluded_paths:
@@ -32,13 +32,17 @@ class Auth:
 
         return True
 
-
     def authorization_header(self, request=None) -> str:
         """
         authorization header function
         """
-        return None
+        if request is None:
+            return None
+         if 'Authorization' not in request.headers:
+             return None
 
+        return request.headers.get('Authorization')
+        
     def current_user(self, request=None) -> TypeVar('User'):
         """
         current user functiuon
