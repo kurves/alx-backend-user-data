@@ -33,7 +33,7 @@ class Auth:
             if excluded_path[-1] != '*':
                 excluded_path += '*'
             if path == excluded_path:
-                return False
+                return True
 
 
         return True
