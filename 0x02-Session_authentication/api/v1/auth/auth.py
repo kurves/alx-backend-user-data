@@ -5,6 +5,7 @@ Authentication module
 """
 
 from flask import request
+import os
 from typing import List, TypeVar
 
 
