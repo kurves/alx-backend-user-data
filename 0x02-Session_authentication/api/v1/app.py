@@ -7,7 +7,7 @@ from api.v1.views import app_views
 from flask import Flask, jsonify, abort, request
 from flask_cors import (CORS, cross_origin)
 import os
-
+from api.v1.auth.session_auth import session_auth
 
 app = Flask(__name__)
 app.register_blueprint(app_views)
@@ -21,6 +21,9 @@ if AUTH_TYPE == "auth":
 if AUTH_TYPE == "basic_auth":
     from api.v1.auth.basic_auth import BasicAuth
     auth = BasicAuth()
+if AUTH_TYPE == "session_auth":
+    from api.v1.auth.session_auth import SessionAuth
+    auth = SessionAuth()
 
 
 @app.before_request
@@ -37,8 +40,9 @@ def before_request() -> None:
 
     if auth.authorization_header(request) is None:
         abort(401)
+    request.current_user = auth.current_user(request)
 
-    if auth.current_user(request) is None:
+    if request.current_user is None:
         abort(403)
 
 
