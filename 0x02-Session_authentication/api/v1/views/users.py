@@ -30,7 +30,7 @@ def view_one_user(user_id: str = None) -> str:
     if user_id == "me":
         if request.current_user is None:
             abort (404)
-        return jsonify(request.current_user.dict())
+        return jsonify(request.current_user.to_dict())
     user = storage.get(User, user_id)
     if not user:
         abort(404)
