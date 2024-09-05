@@ -54,3 +54,16 @@ class Auth:
         current user functiuon
         """
         return None
+
+    def session_cookie(self, request=None):
+        """
+        Retrieves the session cookie from the request.
+        """
+        if request is None:
+            return None
+
+        session_name = os.getenv('SESSION_NAME')
+
+        if session_name is None:
+            return None
+
