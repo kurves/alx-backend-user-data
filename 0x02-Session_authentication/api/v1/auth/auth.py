@@ -67,4 +67,3 @@ class Auth:
         return request.cookies.get(session_name)
         if session_name is None:
             return None
-
