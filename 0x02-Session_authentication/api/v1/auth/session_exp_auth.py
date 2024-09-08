@@ -1,3 +1,9 @@
+#!/usr/bin/env python3
+
+"""
+session expiry module
+"""
+
 import os
 from datetime import datetime, timedelta
 from api.v1.auth.session_auth import SessionAuth
