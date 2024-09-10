@@ -8,7 +8,8 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm.session import Session
-from sqlalchemy.orm.exc import NoResultFound, InvalidRequestError
+from sqlalchemy.orm.exc import NoResultFound
+from sqlalchemy.exc import InvalidRequestError
 from typing import Dict
 from user import Base
 from user import User
@@ -60,7 +61,9 @@ class DB:
         except InvalidRequestError:
             raise InvalidRequestError("Invalid request, check the query arguments")
 
-     def update_user(self, user_id: int, **kwargs: Dict) -> None:
+    def update_user(self, user_id: int, **kwargs: Dict) -> None:
+        """
+        update user attributes
         """
         try:
             user = self.find_user_by(id=user_id)
