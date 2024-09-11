@@ -64,7 +64,23 @@ class Auth:
             return False
 
     def _generate_uuid() -> str:
-    """
-    Generate a new UUID and return its string representation.
-    """
-    return str(uuid.uuid4())
+        """
+        Generate a new UUID and return its string representation.
+        """
+        import uuid
+        return str(uuid.uuid4())
+
+    def create_session(self, email: str) -> str:
+        """
+        Creates a session for the user with the given email.
+        """
+        try:
+            user = self._db.find_user_by(email=email)
+        except Exception:
+            return None  # User not found or error occurred
+
+        session_id = self._generate_uuid()
+
+        self._db.update_user(user.id, session_id=session_id)
+
+        return session_id
