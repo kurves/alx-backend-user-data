@@ -46,24 +46,8 @@ class Auth:
         """
         try:
             user = self._db.find_user_by(email=email)
-            
-            if bcrypt.checkpw(password.encode('utf-8'), user.hashed_password):
-                return True
-        except Exception:
-            return False
-        
-        return False
-
-
-    def valid_login(self, email: str, password: str) -> bool:
-        """
-        Validates if the user login is correct.
-
-        """
-        try:
-            user = self._db.find_user_by(email=email)
             return bcrypt.checkpw(password.encode('utf-8'), user.hashed_password)
-        except Exception:
+        except NoResultFound:
             return False
 
     def _generate_uuid() -> str:
